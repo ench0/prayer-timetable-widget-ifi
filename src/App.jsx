@@ -3,7 +3,7 @@ import { prayersCalc, dayCalc } from 'prayer-timetable-lib'
 import moment from 'moment-hijri'
 
 import './App.css'
-import Hadith from './components/Hadith'
+// import Hadith from './components/Hadith'
 import Clock from './components/Clock'
 import Prayers from './components/Prayers'
 
@@ -20,7 +20,7 @@ export default class App extends Component {
     prayers: { next: { time: moment(), name: '' }, current: { time: moment(), name: '' }, list: [] },
     tomorrow: 0,
     name: '',
-    jamaahShow: true,
+    jamaahShow: false,
     overlayActive: false,
     overlayTitle: ' ... ',
     jummuahTime: moment({ hour: '13', minute: '10' }).day(5),
@@ -45,7 +45,7 @@ export default class App extends Component {
       this.state.log
     )
 
-    document.title = 'ICCI - Islamic Cultural Centre of Ireland'
+    document.title = 'Islamic Foundation of Ireland'
     try {
       if ((await localStorage.getItem('settings')) !== 'undefined') {
         var newsettings = await JSON.parse(localStorage.getItem('settings'))
@@ -104,24 +104,25 @@ export default class App extends Component {
   }
 
   async update() {
-    if (this.state.refresh !== 0) {
-      try {
-        const res = await fetch('https://islamireland.ie/api/timetable/', { mode: 'cors' })
-        // set vars
-        const { name, settings, timetable } = await res.json()
-        // update states and storage
-        await this.setState({ settings, timetable, name })
-        await localStorage.setItem('settings', JSON.stringify(settings))
-        await localStorage.setItem('timetable', JSON.stringify(timetable))
+    console.log('update run')
+    // if (this.state.refresh !== 0) {
+    //   try {
+    //     const res = await fetch('https://islamireland.ie/api/timetable/', { mode: 'cors' })
+    //     // set vars
+    //     const { name, settings, timetable } = await res.json()
+    //     // update states and storage
+    //     await this.setState({ settings, timetable, name })
+    //     await localStorage.setItem('settings', JSON.stringify(settings))
+    //     await localStorage.setItem('timetable', JSON.stringify(timetable))
 
-        this.setState({
-          refreshed: moment().format('HH:mm')
-        })
-        console.log('refreshed main:', this.state.refreshed)
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    //     this.setState({
+    //       refreshed: moment().format('HH:mm')
+    //     })
+    //     console.log('refreshed main:', this.state.refreshed)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // }
   }
 
   /**********************************************************************
@@ -130,7 +131,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="Widget">
-        <Hadith />
+        {/* <Hadith /> */}
         <Clock day={this.state.day} prayers={this.state.prayers} />
         <Prayers prayers={this.state.prayers} jamaahShow={this.state.jamaahShow} join={this.state.join} />
       </div>

@@ -1,7 +1,7 @@
 {
   "semi": false,
   "printWidth": 120,
-  "singleQuote": false,
+  "singleQuote": true,
   "bracketSpacing": true,
   "parser": "flow",
   "overrides": [

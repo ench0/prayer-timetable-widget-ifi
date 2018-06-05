@@ -30,17 +30,18 @@
 }
 
 .Clock {
-    background: url('logo-ar.png') #E86D3C no-repeat 50%;
+    /* background: url('logo-ar.png') #E86D3C no-repeat 50%; */
+    background: #E86D3C;
     background-size: contain;
     display: flex;
     flex-direction: column;
     /* justify-content: space-around; */
     justify-content: center;
     align-items: center;
-    width: 100%;
-    min-width: 300px;
+    /* width: 100%;
+    min-width: 200px; */
     padding: 1em;
-    flex: .32;
+    flex: .25;
     /* height: 500px; */
 }
 
@@ -49,13 +50,14 @@
   background-color:white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+
   width:100%;
   min-width: 300px;
   padding: 1em;
-  flex:.34;
+  flex:.75;
 }
-
 
 /* HADITH COMPONENT */
 .hadithText {
@@ -103,35 +105,50 @@
 }
 
 /* TIMETABLE COMPONENT */
+.prayerTimetable{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .prayerTitle {
   font-size: 90%;
-  font-variant: small-caps;
+  text-transform: uppercase;
   padding-bottom: 1em;
   display: flex;
   align-self: center;
 }
 .prayerHeader {
     /* background-color: rgba(204,102,51,.75); */
-    display: flex;
-    margin: 0;
+    /* display: flex; */
+    /* margin: 0;
     padding: .35em 0;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-between; */
 }
 .prayerRow {
-    /* background-color: rgba(255,100,30,.25); */
+    background-color: rgba(255,100,30,.25);
     display: flex;
     color: #666;
-    margin: .25em 0;
-    padding: .35em 0;
-    flex-direction: row;
-    justify-content: space-between;
+    /* margin: .5em 0; */
+    padding: .5em;
+    flex-direction: column;
+    /* justify-content: space-between; */
     text-transform: uppercase;
+    text-align: center;
+    /* border: 5px solid #ccc; */
+}
+.prayerName, .adhanTime {
+    /* padding: 1em; */
+    display: flex;
+    flex-direction: column;
+    flex-shrink: initial;
 }
 .prayerRow div, .prayerHeader div {
-    width: 33%;
+    /* width: 33%; */
 }
-.prayerName {
+/* .prayerName {
     text-align: left;
 }
 .adhanTime {
@@ -139,7 +156,7 @@
 }
 .iqamahTime {
     text-align: right;
-}
+} */
 .next {
     /* background-color: rgba(255, 100, 25, 0.75) */
     border-top: #E86D3C 1px solid;

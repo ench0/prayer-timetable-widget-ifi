@@ -4,6 +4,9 @@ import moment from 'moment-hijri'
 
 import Prayer from '../components/Prayer'
 
+import Select from 'react-select'
+// import 'react-select/dist/react-select.css'
+
 moment.locale('en-ie')
 
 // console.log(prayers)
@@ -18,7 +21,8 @@ class Prayers extends Component {
       dst: 0,
       prayers: { next: { time: moment(), name: '' }, current: { time: moment(), name: '' }, list: [] },
       jamaahShow: true,
-      join: 'no'
+      join: 'no',
+      selectedOption: ''
     }
   }
 
@@ -36,7 +40,7 @@ class Prayers extends Component {
 
   renderPrayers() {
     return (
-      <div>
+      <div className="prayerTimetable">
         {this.state.prayers.list.map((prayer, index) => (
           <Prayer
             key={index}
@@ -50,29 +54,44 @@ class Prayers extends Component {
     )
   }
 
-  render() {
-    let adhan
-    let iqamah
-    if (this.state.jamaahShow) {
-      adhan = <div className="adhanTime">Adhan</div>
-      iqamah = <div className="iqamahTime">Iqamah</div>
-    } else {
-      adhan = <div className="adhanTime right">Adhan</div>
-      iqamah = ''
+  handleChange = selectedOption => {
+    this.setState({ selectedOption })
+    // selectedOption can be null when the `x` (close) button is clicked
+    if (selectedOption) {
+      console.log(`Selected: ${selectedOption.label}`)
     }
+  }
+
+  render() {
+    const { selectedOption } = this.state
+    // let adhan
+    // let iqamah
+    // if (this.state.jamaahShow) {
+    //   adhan = <div className="adhanTime">Adhan</div>
+    //   iqamah = <div className="iqamahTime">Iqamah</div>
+    // } else {
+    //   adhan = <div className="adhanTime right">Adhan</div>
+    //   iqamah = ''
+    // }
 
     return (
       <div className="Prayers">
         <div className="prayerTitle">Prayer Timetable for Dublin</div>
-        <div>
-          <div className="prayerHeader">
-            <div className="prayerName">Prayer</div>
-            {adhan}
-            {iqamah}
-          </div>
-          {this.renderPrayers()}
-        </div>
+        <Select
+          name="form-field-name"
+          value={selectedOption}
+          onChange={this.handleChange}
+          options={[{ value: 'one', label: 'One' }, { value: 'two', label: 'Two' }]}
+        />
+        {/* <div className="prayerTimetable"> */}
+        {/* <div className="prayerHeader">
+          <div className="prayerName">Prayer</div>
+          {adhan}
+          {iqamah}
+        </div> */}
+        {this.renderPrayers()}
       </div>
+      // </div>
     )
   }
 }
